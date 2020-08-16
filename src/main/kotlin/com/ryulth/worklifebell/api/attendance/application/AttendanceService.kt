@@ -4,6 +4,7 @@ import com.ryulth.worklifebell.api.attendance.domain.Attendance
 import com.ryulth.worklifebell.api.attendance.infrastructure.AttendanceRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
@@ -11,24 +12,21 @@ class AttendanceService(
     private val attendanceRepository: AttendanceRepository
 ) {
     @Transactional
-    fun create(onWorkRequest: OnWorkRequest) {
-//        return Mono.just(onWorkRequest)
-//            .filter { validateDate(it.workDate) }
-//            .map {  }
-//            .map { save(it) }
-    }
+    fun create(onWorkRequest: OnWorkRequest) = Mono.just(onWorkRequest)
+        .flatMap { save(Attendance.of(0, onWorkRequest)) }
 
-    private fun validateDate(date: String) = true
+    @Transactional
+    fun getByUserId(userId: Long) = findAllByUserId(userId)
 
     private fun save(attendance: Attendance) = Mono.just(attendance)
-        .map { attendanceRepository.save(it) }
+        .flatMap { attendanceRepository.save(it) }
 
     private fun findById(id: Long) = Mono.just(id)
-        .map { attendanceRepository.findById(it) }
+        .flatMap { attendanceRepository.findById(it) }
         .switchIfEmpty(Mono.error(IllegalArgumentException()))
 
-    private fun findByUserId(id: Long) = Mono.just(id)
-        .map { attendanceRepository.findByUserId(it) }
-        .switchIfEmpty(Mono.error(IllegalArgumentException()))
+    private fun findAllByUserId(id: Long) = Flux.just(id)
+        .flatMap { attendanceRepository.findAllByUserId(it) }
+        .switchIfEmpty(Flux.error(IllegalArgumentException()))
 
 }

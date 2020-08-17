@@ -1,6 +1,7 @@
 package com.ryulth.worklifebell.api.attendance.interfaces
 
 import com.ryulth.worklifebell.api.attendance.application.AttendanceService
+import com.ryulth.worklifebell.api.attendance.application.OffWorkRequest
 import com.ryulth.worklifebell.api.attendance.application.OnWorkRequest
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters.fromValue
@@ -14,14 +15,21 @@ import java.util.stream.Collectors.toList
 class AttendanceHandler(
     private val attendanceService: AttendanceService
 ) {
-    fun getAll(request: ServerRequest): Mono<ServerResponse> {
-        println(request)
-        return Mono.empty()
-    }
-
     fun getById(request: ServerRequest): Mono<ServerResponse> {
         val id = request.pathVariable("id").toLong()
-        return Flux.just(id)
+        return Mono.just(id)
+            .flatMap {
+                attendanceService.getById(it)
+            }
+            .flatMap {
+                ServerResponse.ok().body(fromValue(it))
+            }
+    }
+
+
+    fun getMyAttendances(request: ServerRequest): Mono<ServerResponse> {
+        val userId = 0L
+        return Flux.just(userId)
             .flatMap { attendanceService.getByUserId(it) }
             .collect(toList())
             .flatMap {
@@ -29,17 +37,17 @@ class AttendanceHandler(
             }
     }
 
-    fun save(request: ServerRequest): Mono<ServerResponse> {
-        val onWorkRequest = request.bodyToMono(OnWorkRequest::class.java)
-        return onWorkRequest.flatMap {
-            attendanceService.create(it)
+    fun onWork(request: ServerRequest): Mono<ServerResponse> = request.bodyToMono(OnWorkRequest::class.java)
+        .flatMap {
+            attendanceService.onWork(0, it)
         }.flatMap {
             ServerResponse.ok().body(fromValue(it))
         }
-    }
 
-    fun delete(request: ServerRequest): Mono<ServerResponse> {
-        println(request)
-        return Mono.empty()
-    }
+    fun offWork(request: ServerRequest): Mono<ServerResponse> = request.bodyToMono(OffWorkRequest::class.java)
+        .flatMap {
+            attendanceService.offWork(0, it)
+        }.flatMap {
+            ServerResponse.ok().body(fromValue(it))
+        }
 }

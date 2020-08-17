@@ -14,13 +14,14 @@ class AttendanceRouter(
 ) {
 
     @Bean
-    fun routerFunction(): RouterFunction<ServerResponse> = nest(path("/attendance"),
+    fun attendanceRouterFunction(): RouterFunction<ServerResponse> = nest(path("/attendances"),
         router {
             listOf(
-                GET("/", attendanceHandler::getAll),
                 GET("/{id}", attendanceHandler::getById),
-                POST("/", attendanceHandler::save),
-                DELETE("/{id}", attendanceHandler::delete))
+                GET("/users", attendanceHandler::getMyAttendances),
+                POST("/on", attendanceHandler::onWork),
+                POST("/off", attendanceHandler::offWork)
+            )
         }
     )
 }

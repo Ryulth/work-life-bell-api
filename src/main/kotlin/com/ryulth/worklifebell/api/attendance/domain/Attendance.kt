@@ -10,8 +10,15 @@ import java.time.LocalDateTime
 
 /**
  * 출근 관련 기록 데이터
+ * @property id auto-increment 되는 아이디
+ * @property userId 출근을 한 유저 아이디
+ * @property workDate 출근을 하는 날짜
+ * @property onWorkDateTime 출근을 하는 시각
+ * @property offWorkDateTime 퇴근을 하는 시각
+ *
+ * @see (userId, workDate) 조합으로 UNIQUE KEY 사용한다.
  */
-@Table("Attendance")
+@Table("attendance")
 class Attendance(
     @Id
     var id: Long? = null,
@@ -21,10 +28,9 @@ class Attendance(
     var offWorkDateTime: LocalDateTime? = null
 ) {
     companion object {
-        fun of(userId: Long, onWorkRequest: OnWorkRequest) = Attendance (
+        fun of(userId: Long, workDate: LocalDate) = Attendance (
             userId = userId,
-            workDate = parseDate(onWorkRequest.workDate),
-            onWorkDateTime = getNow()
+            workDate = workDate
         )
     }
 }

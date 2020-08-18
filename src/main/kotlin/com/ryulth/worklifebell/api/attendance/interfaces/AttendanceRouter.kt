@@ -14,7 +14,7 @@ class AttendanceRouter(
 ) {
 
     @Bean
-    fun attendanceRouterFunction(): RouterFunction<ServerResponse> = nest(path("/attendances"),
+    fun attendanceRouterFunction(): RouterFunction<ServerResponse> = nest(path("/api/attendances"),
         router {
             listOf(
                 GET("/{id}", attendanceHandler::getById),

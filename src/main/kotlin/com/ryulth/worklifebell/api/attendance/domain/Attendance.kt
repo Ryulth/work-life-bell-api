@@ -1,8 +1,5 @@
 package com.ryulth.worklifebell.api.attendance.domain
 
-import com.ryulth.worklifebell.api.attendance.application.OnWorkRequest
-import com.ryulth.worklifebell.api.common.util.TimeUtils.getNow
-import com.ryulth.worklifebell.api.common.util.TimeUtils.parseDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
@@ -28,7 +25,7 @@ class Attendance(
     var offWorkDateTime: LocalDateTime? = null
 ) {
     companion object {
-        fun of(userId: Long, workDate: LocalDate) = Attendance (
+        fun of(userId: Long, workDate: LocalDate) = Attendance(
             userId = userId,
             workDate = workDate
         )

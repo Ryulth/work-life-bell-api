@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.security
+package com.ryulth.worklifebell.api.common.security
 
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

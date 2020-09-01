@@ -12,7 +12,6 @@ import org.springframework.web.reactive.function.server.router
 class AttendanceRouter(
     private val attendanceHandler: AttendanceHandler
 ) {
-
     @Bean
     fun attendanceRouterFunction(): RouterFunction<ServerResponse> = nest(path("/api/attendances"),
         router {

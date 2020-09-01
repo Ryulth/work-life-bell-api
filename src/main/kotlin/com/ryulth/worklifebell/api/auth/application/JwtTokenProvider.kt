@@ -1,5 +1,6 @@
-package com.ryulth.worklifebell.api.security
+package com.ryulth.worklifebell.api.auth.application
 
+import com.ryulth.worklifebell.api.user.domain.User
 import io.jsonwebtoken.*
 import mu.KLogging
 import org.springframework.beans.factory.annotation.Value
@@ -18,17 +19,17 @@ class JwtTokenProvider(
     private val accessTokenExpirationSeconds: Int,
     @Value("\${jwt.expiration-seconds.refresh:10000}")
     private val refreshTokenExpirationSeconds: Int
-) {
-    companion object: KLogging() {
+) : TokenProvider {
+    companion object : KLogging() {
         const val AUTHORITIES_USER_ID = "userId"
         const val AUTHORITIES_LOGIN_TYPE = "loginType"
         const val BEARER = "Bearer"
     }
 
-    fun generatedToken(userId: Long): JwtToken {
-        return JwtToken(
-            accessToken = newToken(userId, true),
-            refreshToken = newToken(userId, false),
+    override fun generatedToken(user: User): TokenInfo {
+        return TokenInfo.of(
+            accessToken = newToken(user.id!!, true),
+            refreshToken = newToken(user.id!!, false),
             type = BEARER
         )
     }
@@ -48,7 +49,7 @@ class JwtTokenProvider(
             .compact()
     }
 
-    fun verifyToken(token: String, isAccess: Boolean): Long {
+    override fun verifyToken(token: String, isAccess: Boolean): Long {
         val key: String = if (isAccess) this.accessPrivateKey else this.refreshPrivateKey
         val jwtToken = token.removePrefix(BEARER).trim()
         var message = ""
@@ -79,9 +80,8 @@ class JwtTokenProvider(
         throw BadCredentialsException(message)
     }
 
-    fun refreshToken(refreshToken: String): JwtToken {
-        val userId = this.verifyToken(refreshToken, false)
-        return this.generatedToken(userId)
+    override fun refreshToken(user: User): TokenInfo {
+        return this.generatedToken(user)
     }
 
     private fun generateKey(secretKey: String): ByteArray? {

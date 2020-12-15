@@ -1,7 +1,7 @@
-package com.ryulth.worklifebell.api.attendance.application
+package com.ryulth.worklifebell.api.attendance.service
 
 import com.ryulth.worklifebell.api.attendance.domain.Attendance
-import com.ryulth.worklifebell.api.attendance.infrastructure.AttendanceRepository
+import com.ryulth.worklifebell.api.attendance.domain.AttendanceRepository
 import com.ryulth.worklifebell.api.common.util.TimeUtils.getNow
 import com.ryulth.worklifebell.api.common.util.TimeUtils.parseDate
 import org.springframework.stereotype.Service

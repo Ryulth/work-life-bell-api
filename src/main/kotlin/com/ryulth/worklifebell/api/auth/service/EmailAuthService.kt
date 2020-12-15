@@ -1,7 +1,7 @@
-package com.ryulth.worklifebell.api.auth.application
+package com.ryulth.worklifebell.api.auth.service
 
-import com.ryulth.worklifebell.api.user.application.EmailUserService
-import com.ryulth.worklifebell.api.user.application.UserService
+import com.ryulth.worklifebell.api.user.service.EmailUserService
+import com.ryulth.worklifebell.api.user.service.UserService
 import com.ryulth.worklifebell.api.user.domain.LoginType
 import com.ryulth.worklifebell.api.user.domain.User
 import org.springframework.security.crypto.factory.PasswordEncoderFactories

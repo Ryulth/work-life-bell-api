@@ -1,6 +1,6 @@
 package com.ryulth.worklifebell.api.common.security
 
-import com.ryulth.worklifebell.api.auth.application.TokenProvider
+import com.ryulth.worklifebell.api.auth.service.TokenProvider
 import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication

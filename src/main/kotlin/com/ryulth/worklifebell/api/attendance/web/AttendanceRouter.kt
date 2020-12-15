@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.attendance.interfaces
+package com.ryulth.worklifebell.api.attendance.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component

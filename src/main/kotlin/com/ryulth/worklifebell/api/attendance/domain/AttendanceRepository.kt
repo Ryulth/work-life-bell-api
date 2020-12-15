@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.attendance.infrastructure
+package com.ryulth.worklifebell.api.attendance.domain
 
 import com.ryulth.worklifebell.api.attendance.domain.Attendance
 import org.springframework.data.repository.reactive.ReactiveCrudRepository

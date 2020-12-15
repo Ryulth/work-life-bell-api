@@ -1,8 +1,8 @@
-package com.ryulth.worklifebell.api.attendance.interfaces
+package com.ryulth.worklifebell.api.attendance.web
 
-import com.ryulth.worklifebell.api.attendance.application.AttendanceService
-import com.ryulth.worklifebell.api.attendance.application.OffWorkRequest
-import com.ryulth.worklifebell.api.attendance.application.OnWorkRequest
+import com.ryulth.worklifebell.api.attendance.service.AttendanceService
+import com.ryulth.worklifebell.api.attendance.service.OffWorkRequest
+import com.ryulth.worklifebell.api.attendance.service.OnWorkRequest
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters.fromValue
 import org.springframework.web.reactive.function.server.ServerRequest

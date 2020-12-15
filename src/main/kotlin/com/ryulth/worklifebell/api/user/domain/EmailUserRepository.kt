@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.user.infrastructure
+package com.ryulth.worklifebell.api.user.domain
 
 import com.ryulth.worklifebell.api.user.domain.EmailUser
 import org.springframework.data.repository.reactive.ReactiveCrudRepository

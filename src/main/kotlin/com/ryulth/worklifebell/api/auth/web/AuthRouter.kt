@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.auth.interfaces
+package com.ryulth.worklifebell.api.auth.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component

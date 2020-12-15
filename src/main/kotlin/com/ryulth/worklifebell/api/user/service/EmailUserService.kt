@@ -1,8 +1,7 @@
-package com.ryulth.worklifebell.api.user.application
+package com.ryulth.worklifebell.api.user.service
 
-import com.ryulth.worklifebell.api.attendance.domain.Attendance
 import com.ryulth.worklifebell.api.user.domain.EmailUser
-import com.ryulth.worklifebell.api.user.infrastructure.EmailUserRepository
+import com.ryulth.worklifebell.api.user.domain.EmailUserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono

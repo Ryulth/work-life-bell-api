@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.auth.application
+package com.ryulth.worklifebell.api.auth.service
 
 data class TokenInfo(
     val accessToken: String,

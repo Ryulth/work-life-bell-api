@@ -1,7 +1,7 @@
-package com.ryulth.worklifebell.api.auth.interfaces
+package com.ryulth.worklifebell.api.auth.web
 
-import com.ryulth.worklifebell.api.auth.application.EmailAuthService
-import com.ryulth.worklifebell.api.auth.application.EmailRegisterRequest
+import com.ryulth.worklifebell.api.auth.service.EmailAuthService
+import com.ryulth.worklifebell.api.auth.service.EmailRegisterRequest
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.ServerRequest

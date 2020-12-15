@@ -1,4 +1,4 @@
-package com.ryulth.worklifebell.api.auth.application
+package com.ryulth.worklifebell.api.auth.service
 
 import com.ryulth.worklifebell.api.user.domain.User
 import org.springframework.stereotype.Service
